@@ -1,7 +1,8 @@
 ---
 title: 'Reproducible Research Course Project 1: Analyzing Activity Monitoring Data'
-output: html_document
-keep_md: true
+output: 
+  html_document:
+    keep_md: true
 ---
 
 ## Introduction
@@ -76,10 +77,13 @@ Compared with the histogram of disimputed data set, The frequency of low number 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 It is interesting to explore the difference in pattern between weekdays and weekends. First, let us label the data set with `"weekday"` or `"weekend"` by creating a new factor variable named `weekday.or.weekend`.
-```{r wday or wend}
-## weekdays vs weekends
+```{r load lib, message=FALSE}
 library(chron)
 library(dplyr)
+```
+
+```{r wday or wend}
+## weekdays vs weekends
 wday_or_wend <- is.weekend(as.Date(activity$date))
 activity <- mutate(activity, weekday.or.weekend = wday_or_wend)
 activity$weekday.or.weekend[wday_or_wend] <- "weekday"
